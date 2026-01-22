@@ -16,13 +16,27 @@ java {
 
 repositories {
 	mavenCentral()
+	maven { url = uri("https://repo.spring.io/milestone") }
 	maven { url = uri("https://repo.spring.io/snapshot") }
+	maven {
+		name = "Central Portal Snapshots"
+		url = uri("https://repo.spring.io/snapshots/central-portal")
+	}
 }
 
+extra["springAiVersion"] = "2.0.0-SNAPSHOT"
+
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter")
+	implementation("org.springframework.ai:spring-ai-starter-model-ollama")
+	implementation("org.springframework.ai:spring-ai-starter-model-openai")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+}
+
+dependencyManagement {
+	imports {
+		mavenBom("org.springframework.ai:spring-ai-bom:${property("springAiVersion")}")
+	}
 }
 
 tasks.withType<Test> {
