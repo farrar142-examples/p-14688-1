@@ -27,11 +27,14 @@ repositories {
 extra["springAiVersion"] = "2.0.0-SNAPSHOT"
 
 dependencies {
+	implementation("org.springframework.boot:spring-boot-starter-webmvc")
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
 	implementation("org.springframework.ai:spring-ai-starter-model-ollama")
 	implementation("org.springframework.ai:spring-ai-starter-model-openai")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.springframework.boot:spring-boot-webtestclient")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+	testImplementation("io.projectreactor:reactor-test")
 }
 
 dependencyManagement {
